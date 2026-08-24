@@ -1,0 +1,22 @@
+{
+  "fig": "global",
+  "plot_style": "totani",
+  "mcmc_stat": "f_ml",
+  "mcmc_dir": "../../mcmc/fit_results/quick_global/global_fit_results_fig4",
+  "outdir": "../global_fit/plots_global_fig4",
+  "roi_lon": 60,
+  "roi_lat": 60,
+  "disk_cut": 10.0,
+  "binsz": 0.125,
+  "exclude_disk_in_plot": true,
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics",
+    "fb_neg",
+    "fb_pos"
+  ]
+}

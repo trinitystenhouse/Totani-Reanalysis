@@ -1,0 +1,516 @@
+{
+  "variants": [
+    {
+      "name": "baseline_rho2",
+      "group": "baseline",
+      "description": "Nominal disk-excluded rho2 global fit.",
+      "config": "mcmc/configs/systematics/baseline_rho2.json",
+      "plot_config": "figures/configs/systematics/baseline_rho2.json",
+      "global_dir": "../../global_systematics/baseline_rho2"
+    },
+    {
+      "name": "diffuse_no_loopI",
+      "group": "diffuse",
+      "description": "Remove both Loop I shell templates. Bubbles re-extracted self-consistently without Loop I in the background (rebuild_bubbles_per_variant.py).",
+      "config": "mcmc/configs/systematics/diffuse_no_loopI.json",
+      "plot_config": "figures/configs/systematics/diffuse_no_loopI.json",
+      "global_dir": "../../global_systematics/diffuse_no_loopI"
+    },
+    {
+      "name": "diffuse_flat_bubbles",
+      "group": "diffuse",
+      "description": "Replace positive/negative bubble residual templates with a single flat bubble template.",
+      "config": "mcmc/configs/systematics/diffuse_flat_bubbles.json",
+      "plot_config": "figures/configs/systematics/diffuse_flat_bubbles.json",
+      "global_dir": "../../global_systematics/diffuse_flat_bubbles"
+    },
+    {
+      "name": "diffuse_no_bubbles",
+      "group": "diffuse",
+      "description": "Remove the bubble residual templates.",
+      "config": "mcmc/configs/systematics/diffuse_no_bubbles.json",
+      "plot_config": "figures/configs/systematics/diffuse_no_bubbles.json",
+      "global_dir": "../../global_systematics/diffuse_no_bubbles"
+    },
+    {
+      "name": "diffuse_giem",
+      "group": "diffuse",
+      "description": "Replace the GALPROP gas+ICS diffuse with the Fermi-LAT Galactic Interstellar Emission Model (GIEM, gll_iem_v07). Requires the prepared template mu_giem_counts.fits (and mu_giem_psf_counts.fits for the pixelwise PSF fit) in templates_dir: reproject gll_iem_v07.fits onto the ROI CAR grid and multiply by exposure. This is the cross-check against the LAT standard background that Totani (2025) also performs.",
+      "config": "mcmc/configs/systematics/diffuse_giem.json",
+      "plot_config": "figures/configs/systematics/diffuse_giem.json",
+      "global_dir": "../../global_systematics/diffuse_giem"
+    },
+    {
+      "name": "diffuse_giem_only",
+      "group": "diffuse",
+      "description": "GIEM (gll_iem_v07) as the SOLE large-scale diffuse model: replaces gas+ICS AND Loop I + Fermi bubbles, since gll_iem_v07 already contains large-scale residual structures that overlap them. Diagnostic for whether the diffuse_giem halo suppression is double-counting (Loop I/bubbles fit twice) or a genuine diffuse-model effect. Compare the halo to diffuse_giem.",
+      "config": "mcmc/configs/systematics/diffuse_giem_only.json",
+      "plot_config": "figures/configs/systematics/diffuse_giem_only.json",
+      "global_dir": "../../global_systematics/diffuse_giem_only"
+    },
+    {
+      "name": "mask_extended_only",
+      "group": "point_source_mask",
+      "description": "Use only the extended-source mask; do not mask bright point sources.",
+      "config": "mcmc/configs/systematics/mask_extended_only.json",
+      "plot_config": "figures/configs/systematics/mask_extended_only.json",
+      "global_dir": "../../global_systematics/mask_extended_only"
+    },
+    {
+      "name": "mask_loose_bright",
+      "group": "point_source_mask",
+      "description": "Less aggressive bright point-source mask.",
+      "config": "mcmc/configs/systematics/mask_loose_bright.json",
+      "plot_config": "figures/configs/systematics/mask_loose_bright.json",
+      "global_dir": "../../global_systematics/mask_loose_bright"
+    },
+    {
+      "name": "mask_aggressive_bright",
+      "group": "point_source_mask",
+      "description": "More aggressive bright point-source mask.",
+      "config": "mcmc/configs/systematics/mask_aggressive_bright.json",
+      "plot_config": "figures/configs/systematics/mask_aggressive_bright.json",
+      "global_dir": "../../global_systematics/mask_aggressive_bright"
+    },
+    {
+      "name": "mask_energy_dependent",
+      "group": "point_source_mask",
+      "description": "Energy-dependent bright point-source mask using the LAT PSF radius scaling.",
+      "config": "mcmc/configs/systematics/mask_energy_dependent.json",
+      "plot_config": "figures/configs/systematics/mask_energy_dependent.json",
+      "global_dir": "../../global_systematics/mask_energy_dependent"
+    },
+    {
+      "name": "psf_none",
+      "group": "psf",
+      "description": "Disable PSF forward-folding.",
+      "config": "mcmc/configs/systematics/psf_none.json",
+      "plot_config": "figures/configs/systematics/psf_none.json",
+      "global_dir": "../../global_systematics/psf_none"
+    },
+    {
+      "name": "psf_halo_only",
+      "group": "psf",
+      "description": "PSF-forward-fold only the NFW halo template.",
+      "config": "mcmc/configs/systematics/psf_halo_only.json",
+      "plot_config": "figures/configs/systematics/psf_halo_only.json",
+      "global_dir": "../../global_systematics/psf_halo_only"
+    },
+    {
+      "name": "psf_wide_kernel",
+      "group": "psf",
+      "description": "Use the nominal PSF labels with a wider convolution truncation radius.",
+      "config": "mcmc/configs/systematics/psf_wide_kernel.json",
+      "plot_config": "figures/configs/systematics/psf_wide_kernel.json",
+      "global_dir": "../../global_systematics/psf_wide_kernel"
+    },
+    {
+      "name": "mock_null_nohalo",
+      "group": "mock",
+      "description": "Fit deterministic no-halo mock counts built from the no-halo global model.",
+      "config": "mcmc/configs/systematics/mock_null_nohalo.json",
+      "plot_config": "figures/configs/systematics/mock_null_nohalo.json",
+      "global_dir": "../../global_systematics/mock_null_nohalo"
+    },
+    {
+      "name": "mock_recovery_rho2",
+      "group": "mock",
+      "description": "Fit deterministic no-halo mock counts with the baseline rho2 halo injected.",
+      "config": "mcmc/configs/systematics/mock_recovery_rho2.json",
+      "plot_config": "figures/configs/systematics/mock_recovery_rho2.json",
+      "global_dir": "../../global_systematics/mock_recovery_rho2"
+    },
+    {
+      "name": "ics_morphology_flat",
+      "group": "diffuse_ics",
+      "description": "Replace the nominal ICS template with a flatter-latitude ISRF variant (more inverse-Compton at high |b|), per-plane flux preserved. Tests the ISRF vertical scale-height uncertainty that competes with a smooth halo.",
+      "config": "mcmc/configs/systematics/ics_morphology_flat.json",
+      "plot_config": "figures/configs/systematics/ics_morphology_flat.json",
+      "global_dir": "../../global_systematics/ics_morphology_flat"
+    },
+    {
+      "name": "ics_morphology_steep",
+      "group": "diffuse_ics",
+      "description": "Replace the nominal ICS template with a steeper-latitude ISRF variant (less inverse-Compton at high |b|), per-plane flux preserved.",
+      "config": "mcmc/configs/systematics/ics_morphology_steep.json",
+      "plot_config": "figures/configs/systematics/ics_morphology_steep.json",
+      "global_dir": "../../global_systematics/ics_morphology_steep"
+    },
+    {
+      "name": "roi_north",
+      "group": "hemisphere",
+      "description": "Restrict the ROI to the northern Galactic hemisphere (b>0).",
+      "config": "mcmc/configs/systematics/roi_north.json",
+      "plot_config": "figures/configs/systematics/roi_north.json",
+      "global_dir": "../../global_systematics/roi_north"
+    },
+    {
+      "name": "roi_south",
+      "group": "hemisphere",
+      "description": "Restrict the ROI to the southern Galactic hemisphere (b<0).",
+      "config": "mcmc/configs/systematics/roi_south.json",
+      "plot_config": "figures/configs/systematics/roi_south.json",
+      "global_dir": "../../global_systematics/roi_south"
+    },
+    {
+      "name": "mock_diffuse_ics_null",
+      "group": "mock",
+      "description": "Fit the diffuse-mismodelling mock: no-halo truth with a distorted ICS morphology and no injected halo. Spurious-halo null test.",
+      "config": "mcmc/configs/systematics/mock_diffuse_ics_null.json",
+      "plot_config": "figures/configs/systematics/mock_diffuse_ics_null.json",
+      "global_dir": "../../global_systematics/mock_diffuse_ics_null"
+    },
+    {
+      "name": "quad_NE_excl",
+      "group": "quadrant",
+      "description": "NE quadrant (hemisphere=north, lon=east), disk excluded.",
+      "config": "mcmc/configs/systematics/quad_NE_excl.json",
+      "plot_config": "figures/configs/systematics/quad_NE_excl.json",
+      "global_dir": "../../global_systematics/quad_NE_excl"
+    },
+    {
+      "name": "quad_NE_incl",
+      "group": "quadrant",
+      "description": "NE quadrant (hemisphere=north, lon=east), disk included.",
+      "config": "mcmc/configs/systematics/quad_NE_incl.json",
+      "plot_config": "figures/configs/systematics/quad_NE_incl.json",
+      "global_dir": "../../global_systematics/quad_NE_incl"
+    },
+    {
+      "name": "quad_NW_excl",
+      "group": "quadrant",
+      "description": "NW quadrant (hemisphere=north, lon=west), disk excluded.",
+      "config": "mcmc/configs/systematics/quad_NW_excl.json",
+      "plot_config": "figures/configs/systematics/quad_NW_excl.json",
+      "global_dir": "../../global_systematics/quad_NW_excl"
+    },
+    {
+      "name": "quad_NW_incl",
+      "group": "quadrant",
+      "description": "NW quadrant (hemisphere=north, lon=west), disk included.",
+      "config": "mcmc/configs/systematics/quad_NW_incl.json",
+      "plot_config": "figures/configs/systematics/quad_NW_incl.json",
+      "global_dir": "../../global_systematics/quad_NW_incl"
+    },
+    {
+      "name": "quad_SE_excl",
+      "group": "quadrant",
+      "description": "SE quadrant (hemisphere=south, lon=east), disk excluded.",
+      "config": "mcmc/configs/systematics/quad_SE_excl.json",
+      "plot_config": "figures/configs/systematics/quad_SE_excl.json",
+      "global_dir": "../../global_systematics/quad_SE_excl"
+    },
+    {
+      "name": "quad_SE_incl",
+      "group": "quadrant",
+      "description": "SE quadrant (hemisphere=south, lon=east), disk included.",
+      "config": "mcmc/configs/systematics/quad_SE_incl.json",
+      "plot_config": "figures/configs/systematics/quad_SE_incl.json",
+      "global_dir": "../../global_systematics/quad_SE_incl"
+    },
+    {
+      "name": "quad_SW_excl",
+      "group": "quadrant",
+      "description": "SW quadrant (hemisphere=south, lon=west), disk excluded.",
+      "config": "mcmc/configs/systematics/quad_SW_excl.json",
+      "plot_config": "figures/configs/systematics/quad_SW_excl.json",
+      "global_dir": "../../global_systematics/quad_SW_excl"
+    },
+    {
+      "name": "quad_SW_incl",
+      "group": "quadrant",
+      "description": "SW quadrant (hemisphere=south, lon=west), disk included.",
+      "config": "mcmc/configs/systematics/quad_SW_incl.json",
+      "plot_config": "figures/configs/systematics/quad_SW_incl.json",
+      "global_dir": "../../global_systematics/quad_SW_incl"
+    },
+    {
+      "name": "hardic_burst_s",
+      "group": "cr_injection",
+      "description": "Centrally-injected hard inverse-Compton leptonic population, variant 'burst_s' (see hardic_physics.py module docstring for the transport/emission model). Halo (RHO2) retained: tests whether the 20 GeV halo survives alongside this component, not whether it replaces it.",
+      "config": "mcmc/configs/systematics/hardic_burst_s.json",
+      "plot_config": "figures/configs/systematics/hardic_burst_s.json",
+      "global_dir": "../../global_systematics/hardic_burst_s"
+    },
+    {
+      "name": "hardic_burst_m",
+      "group": "cr_injection",
+      "description": "Centrally-injected hard inverse-Compton leptonic population, variant 'burst_m' (see hardic_physics.py module docstring for the transport/emission model). Halo (RHO2) retained: tests whether the 20 GeV halo survives alongside this component, not whether it replaces it.",
+      "config": "mcmc/configs/systematics/hardic_burst_m.json",
+      "plot_config": "figures/configs/systematics/hardic_burst_m.json",
+      "global_dir": "../../global_systematics/hardic_burst_m"
+    },
+    {
+      "name": "hardic_burst_l",
+      "group": "cr_injection",
+      "description": "Centrally-injected hard inverse-Compton leptonic population, variant 'burst_l' (see hardic_physics.py module docstring for the transport/emission model). Halo (RHO2) retained: tests whether the 20 GeV halo survives alongside this component, not whether it replaces it.",
+      "config": "mcmc/configs/systematics/hardic_burst_l.json",
+      "plot_config": "figures/configs/systematics/hardic_burst_l.json",
+      "global_dir": "../../global_systematics/hardic_burst_l"
+    },
+    {
+      "name": "hardic_cont",
+      "group": "cr_injection",
+      "description": "Centrally-injected hard inverse-Compton leptonic population, variant 'cont' (see hardic_physics.py module docstring for the transport/emission model). Halo (RHO2) retained: tests whether the 20 GeV halo survives alongside this component, not whether it replaces it.",
+      "config": "mcmc/configs/systematics/hardic_cont.json",
+      "plot_config": "figures/configs/systematics/hardic_cont.json",
+      "global_dir": "../../global_systematics/hardic_cont"
+    },
+    {
+      "name": "hardic_adv",
+      "group": "cr_injection",
+      "description": "Centrally-injected hard inverse-Compton leptonic population, variant 'adv' (see hardic_physics.py module docstring for the transport/emission model). Halo (RHO2) retained: tests whether the 20 GeV halo survives alongside this component, not whether it replaces it.",
+      "config": "mcmc/configs/systematics/hardic_adv.json",
+      "plot_config": "figures/configs/systematics/hardic_adv.json",
+      "global_dir": "../../global_systematics/hardic_adv"
+    },
+    {
+      "name": "hardic_cmbonly_burst_m",
+      "group": "cr_injection",
+      "description": "Centrally-injected hard inverse-Compton leptonic population, variant 'cmbonly_burst_m' (see hardic_physics.py module docstring for the transport/emission model). Halo (RHO2) retained: tests whether the 20 GeV halo survives alongside this component, not whether it replaces it.",
+      "config": "mcmc/configs/systematics/hardic_cmbonly_burst_m.json",
+      "plot_config": "figures/configs/systematics/hardic_cmbonly_burst_m.json",
+      "global_dir": "../../global_systematics/hardic_cmbonly_burst_m"
+    },
+    {
+      "name": "hardic_burst_m_bubbles_reextracted",
+      "group": "cr_injection_bubbles",
+      "description": "Same as hardic_burst_m, but fb_pos/fb_neg are re-extracted with hardic_burst_m included in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Tests the sensitivity of the hard-IC result to this bubble self-consistency point.",
+      "config": "mcmc/configs/systematics/hardic_burst_m_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/hardic_burst_m_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/hardic_burst_m_bubbles_reextracted"
+    },
+    {
+      "name": "hardic_cont_bubbles_reextracted",
+      "group": "cr_injection_bubbles",
+      "description": "Same as hardic_cont, but fb_pos/fb_neg are re-extracted with hardic_cont included in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Tests the sensitivity of the hard-IC result to this bubble self-consistency point.",
+      "config": "mcmc/configs/systematics/hardic_cont_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/hardic_cont_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/hardic_cont_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z6",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z6_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z6/ics_iem_sl_z6 templates; every other template unchanged. ANCHOR / VALIDATION model: identified with the existing analysis baseline GALDEF (Lorimer pulsar cosmic-ray sources, z_h=6 kpc, R=30 kpc halo radius, T_S=150 K HI spin temperature, E(B-V) cut 2 mag). Included as a consistency check -- its fit is expected to closely match baseline_rho2 -- NOT an independent excursion; exclude it when computing the systematic spread over this group.",
+      "config": "mcmc/configs/systematics/iem_sl_z6.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6.json",
+      "global_dir": "../../global_systematics/iem_sl_z6"
+    },
+    {
+      "name": "iem_sl_z4",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z4_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z4/ics_iem_sl_z4 templates; every other template unchanged. Lorimer cosmic-ray source distribution, propagation halo height z_h=4 kpc (vs. 6 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z4.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z4.json",
+      "global_dir": "../../global_systematics/iem_sl_z4"
+    },
+    {
+      "name": "iem_sl_z8",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z8_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z8/ics_iem_sl_z8 templates; every other template unchanged. Lorimer cosmic-ray source distribution, propagation halo height z_h=8 kpc (vs. 6 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z8.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z8.json",
+      "global_dir": "../../global_systematics/iem_sl_z8"
+    },
+    {
+      "name": "iem_sl_z10",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z10_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z10/ics_iem_sl_z10 templates; every other template unchanged. Lorimer cosmic-ray source distribution, propagation halo height z_h=10 kpc (vs. 6 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z10.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z10.json",
+      "global_dir": "../../global_systematics/iem_sl_z10"
+    },
+    {
+      "name": "iem_ss_z6",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SS_Z6_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_ss_z6/ics_iem_ss_z6 templates; every other template unchanged. SS cosmic-ray source distribution (Ackermann et al. 2012 model grid) at z_h=6 kpc, otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_ss_z6.json",
+      "plot_config": "figures/configs/systematics/iem_ss_z6.json",
+      "global_dir": "../../global_systematics/iem_ss_z6"
+    },
+    {
+      "name": "iem_sy_z6",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SY_Z6_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sy_z6/ics_iem_sy_z6 templates; every other template unchanged. SY cosmic-ray source distribution at z_h=6 kpc, otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sy_z6.json",
+      "plot_config": "figures/configs/systematics/iem_sy_z6.json",
+      "global_dir": "../../global_systematics/iem_sy_z6"
+    },
+    {
+      "name": "iem_so_z6",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SO_Z6_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_so_z6/ics_iem_so_z6 templates; every other template unchanged. SO cosmic-ray source distribution at z_h=6 kpc, otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_so_z6.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6.json",
+      "global_dir": "../../global_systematics/iem_so_z6"
+    },
+    {
+      "name": "iem_ss_z4",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SS_Z4_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_ss_z4/ics_iem_ss_z4 templates; every other template unchanged. SS cosmic-ray source distribution, propagation halo height z_h=4 kpc.",
+      "config": "mcmc/configs/systematics/iem_ss_z4.json",
+      "plot_config": "figures/configs/systematics/iem_ss_z4.json",
+      "global_dir": "../../global_systematics/iem_ss_z4"
+    },
+    {
+      "name": "iem_ss_z10",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SS_Z10_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_ss_z10/ics_iem_ss_z10 templates; every other template unchanged. SS cosmic-ray source distribution, propagation halo height z_h=10 kpc.",
+      "config": "mcmc/configs/systematics/iem_ss_z10.json",
+      "plot_config": "figures/configs/systematics/iem_ss_z10.json",
+      "global_dir": "../../global_systematics/iem_ss_z10"
+    },
+    {
+      "name": "iem_sy_z4",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SY_Z4_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sy_z4/ics_iem_sy_z4 templates; every other template unchanged. SY cosmic-ray source distribution, propagation halo height z_h=4 kpc.",
+      "config": "mcmc/configs/systematics/iem_sy_z4.json",
+      "plot_config": "figures/configs/systematics/iem_sy_z4.json",
+      "global_dir": "../../global_systematics/iem_sy_z4"
+    },
+    {
+      "name": "iem_sy_z10",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SY_Z10_R30_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sy_z10/ics_iem_sy_z10 templates; every other template unchanged. SY cosmic-ray source distribution, propagation halo height z_h=10 kpc.",
+      "config": "mcmc/configs/systematics/iem_sy_z10.json",
+      "plot_config": "figures/configs/systematics/iem_sy_z10.json",
+      "global_dir": "../../global_systematics/iem_sy_z10"
+    },
+    {
+      "name": "iem_sl_z6_tinf",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z6_R30_T100000_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z6_tinf/ics_iem_sl_z6_tinf templates; every other template unchanged. Lorimer cosmic-ray source distribution, HI spin temperature T_S=100000 K (effectively the optically-thin HI limit, vs. 150 K anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_tinf.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_tinf.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_tinf"
+    },
+    {
+      "name": "iem_sl_z6_c5",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z6_R30_T150_C5'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z6_c5/ics_iem_sl_z6_c5 templates; every other template unchanged. Lorimer cosmic-ray source distribution, E(B-V) reddening cut of 5 mag (vs. 2 mag anchor, admits more dust-obscured sky), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_c5.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_c5.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_c5"
+    },
+    {
+      "name": "iem_sl_z6_r20",
+      "group": "diffuse_grid",
+      "description": "GALPROP IEM model grid (Ackermann et al. 2012, ApJ 750, 3), model 'SL_Z6_R20_T150_C2'. Replaces the baseline gas+ICS diffuse pair with this model's own gas_iem_sl_z6_r20/ics_iem_sl_z6_r20 templates; every other template unchanged. Lorimer cosmic-ray source distribution, propagation halo radius R=20 kpc (vs. 30 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_r20.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_r20.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_r20"
+    },
+    {
+      "name": "iem_sl_z6_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z6, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z6/ics_iem_sl_z6 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z6_R30_T150_C2'. ANCHOR / VALIDATION model: identified with the existing analysis baseline GALDEF (Lorimer pulsar cosmic-ray sources, z_h=6 kpc, R=30 kpc halo radius, T_S=150 K HI spin temperature, E(B-V) cut 2 mag). Included as a consistency check -- its fit is expected to closely match baseline_rho2 -- NOT an independent excursion; exclude it when computing the systematic spread over this group.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z4_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z4, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z4/ics_iem_sl_z4 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z4_R30_T150_C2'. Lorimer cosmic-ray source distribution, propagation halo height z_h=4 kpc (vs. 6 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z4_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z4_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z4_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z8_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z8, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z8/ics_iem_sl_z8 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z8_R30_T150_C2'. Lorimer cosmic-ray source distribution, propagation halo height z_h=8 kpc (vs. 6 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z8_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z8_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z8_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z10_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z10, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z10/ics_iem_sl_z10 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z10_R30_T150_C2'. Lorimer cosmic-ray source distribution, propagation halo height z_h=10 kpc (vs. 6 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z10_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z10_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z10_bubbles_reextracted"
+    },
+    {
+      "name": "iem_ss_z6_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_ss_z6, but fb_pos/fb_neg are re-extracted with gas_iem_ss_z6/ics_iem_ss_z6 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SS_Z6_R30_T150_C2'. SS cosmic-ray source distribution (Ackermann et al. 2012 model grid) at z_h=6 kpc, otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_ss_z6_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_ss_z6_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_ss_z6_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sy_z6_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sy_z6, but fb_pos/fb_neg are re-extracted with gas_iem_sy_z6/ics_iem_sy_z6 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SY_Z6_R30_T150_C2'. SY cosmic-ray source distribution at z_h=6 kpc, otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sy_z6_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sy_z6_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sy_z6_bubbles_reextracted"
+    },
+    {
+      "name": "iem_so_z6_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_so_z6, but fb_pos/fb_neg are re-extracted with gas_iem_so_z6/ics_iem_so_z6 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SO_Z6_R30_T150_C2'. SO cosmic-ray source distribution at z_h=6 kpc, otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_so_z6_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted"
+    },
+    {
+      "name": "iem_ss_z4_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_ss_z4, but fb_pos/fb_neg are re-extracted with gas_iem_ss_z4/ics_iem_ss_z4 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SS_Z4_R30_T150_C2'. SS cosmic-ray source distribution, propagation halo height z_h=4 kpc.",
+      "config": "mcmc/configs/systematics/iem_ss_z4_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_ss_z4_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_ss_z4_bubbles_reextracted"
+    },
+    {
+      "name": "iem_ss_z10_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_ss_z10, but fb_pos/fb_neg are re-extracted with gas_iem_ss_z10/ics_iem_ss_z10 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SS_Z10_R30_T150_C2'. SS cosmic-ray source distribution, propagation halo height z_h=10 kpc.",
+      "config": "mcmc/configs/systematics/iem_ss_z10_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_ss_z10_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_ss_z10_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sy_z4_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sy_z4, but fb_pos/fb_neg are re-extracted with gas_iem_sy_z4/ics_iem_sy_z4 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SY_Z4_R30_T150_C2'. SY cosmic-ray source distribution, propagation halo height z_h=4 kpc.",
+      "config": "mcmc/configs/systematics/iem_sy_z4_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sy_z4_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sy_z4_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sy_z10_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sy_z10, but fb_pos/fb_neg are re-extracted with gas_iem_sy_z10/ics_iem_sy_z10 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SY_Z10_R30_T150_C2'. SY cosmic-ray source distribution, propagation halo height z_h=10 kpc.",
+      "config": "mcmc/configs/systematics/iem_sy_z10_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sy_z10_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sy_z10_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z6_tinf_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z6_tinf, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z6_tinf/ics_iem_sl_z6_tinf in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z6_R30_T100000_C2'. Lorimer cosmic-ray source distribution, HI spin temperature T_S=100000 K (effectively the optically-thin HI limit, vs. 150 K anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_tinf_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_tinf_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_tinf_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z6_c5_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z6_c5, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z6_c5/ics_iem_sl_z6_c5 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z6_R30_T150_C5'. Lorimer cosmic-ray source distribution, E(B-V) reddening cut of 5 mag (vs. 2 mag anchor, admits more dust-obscured sky), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_c5_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_c5_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_c5_bubbles_reextracted"
+    },
+    {
+      "name": "iem_sl_z6_r20_bubbles_reextracted",
+      "group": "diffuse_grid_bubbles",
+      "description": "Same as iem_sl_z6_r20, but fb_pos/fb_neg are re-extracted with gas_iem_sl_z6_r20/ics_iem_sl_z6_r20 in the Stage-2 background (rebuild_bubbles_per_variant.py), rather than reusing the baseline bubble residual. Model 'SL_Z6_R20_T150_C2'. Lorimer cosmic-ray source distribution, propagation halo radius R=20 kpc (vs. 30 kpc anchor), otherwise as the anchor.",
+      "config": "mcmc/configs/systematics/iem_sl_z6_r20_bubbles_reextracted.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_r20_bubbles_reextracted.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_r20_bubbles_reextracted"
+    }
+  ]
+}

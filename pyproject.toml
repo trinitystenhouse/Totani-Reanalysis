@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "totani-reanalysis-public"
+version = "0.1.0"
+description = "Pixel-level reanalysis of Totani et al.'s 20 GeV Galactic halo excess (Fermi-LAT Pass 8)"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "astropy",
+  "cycler",
+  "tqdm",
+  "emcee",
+  "corner",
+]
+
+[tool.setuptools]
+# Expose the shared packages top-level from the repo root so
+# `from core...`, `from totani_helpers...`, `from shared.paths import...`
+# and `from helpers.plot_style import...` resolve from anywhere after
+# `pip install -e .`. `core` is installed in place (Totani_reanalysis/core)
+# because spectral_reshaping.py is entangled with the operator/attenuation
+# core and is not split out into a standalone package. `totani_helpers` is
+# exposed both as `shared.totani_helpers` and top-level as `totani_helpers`
+# because both import spellings are used across the cellwise (Totani_paper_
+# check) and pixel-level (Totani_reanalysis) scripts.
+packages = ["helpers", "shared", "shared.totani_helpers", "core", "totani_helpers"]
+
+[tool.setuptools.package-dir]
+core = "Totani_reanalysis/core"
+totani_helpers = "shared/totani_helpers"

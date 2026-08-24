@@ -1,0 +1,23 @@
+{
+  "fig": "global",
+  "plot_style": "totani",
+  "mcmc_stat": "f_ml",
+  "mcmc_dir": "../../../mcmc/global_systematics/quad_NE_incl",
+  "outdir": "../../plots_global_systematics/quad_NE_incl",
+  "roi_lon": 60,
+  "roi_lat": 60,
+  "disk_cut": 10.0,
+  "binsz": 0.125,
+  "exclude_disk_in_plot": true,
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics",
+    "nfw_NFW_g1_rho2_rs21_R08_rvir402_ns2048_normpole_pheno",
+    "fb_pos",
+    "fb_neg"
+  ]
+}

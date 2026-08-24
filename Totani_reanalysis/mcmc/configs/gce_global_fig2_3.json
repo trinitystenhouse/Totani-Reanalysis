@@ -1,0 +1,28 @@
+{
+  "base_config": "gce_global_base.json",
+  "name": "gce_global_15deg_fig2_3",
+  "global_dir": "../global_fit_results_fig2_3",
+
+  "roi_lon": 60,
+  "roi_lat": 60,
+
+  "energy_bins": "all",
+
+  "verbosity": 1,
+
+  "plot_configs": [
+    "../../figures/configs/fig2_global.json",
+    "../../figures/configs/fig3_global.json"
+  ],
+
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "nfw_NFW_g1_rho2.5_rs21_R08_rvir402_ns2048_normpole_pheno",
+    "loopA",
+    "loopB",
+    "ics",
+    "fb_flat"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "base_config": "base_pixelwise.json",
+  "name": "pixelwise_mcmc_hardic_cont",
+  "mcmc_dir": "../pixelwise_mcmc_results_hardic_cont",
+  "init_from_dir": "../global_systematics/hardic_cont",
+
+  "labels": [
+    "gas_psf",
+    "iso",
+    "ps",
+    "loopA_psf",
+    "loopB_psf",
+    "ics_psf",
+    "nfw_NFW_g1_rho2_rs21_R08_rvir402_ns2048_normpole_pheno_psf",
+    "hardic_cont_psf",
+    "fb_pos",
+    "fb_neg"
+  ]
+}

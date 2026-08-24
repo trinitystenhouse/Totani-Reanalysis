@@ -1,0 +1,33 @@
+{
+  "base_config": "gce_global_base.json",
+  "name": "pppc_bb_m2000",
+  "include_disk": false,
+  "energy_bins": "all",
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics",
+    "pppc_bb_m2000",
+    "fb_pos",
+    "fb_neg"
+  ],
+  "negative_keys": [
+    "pppc",
+    "fb_neg"
+  ],
+  "iso_target_e2": 0.0001,
+  "verbosity": 1,
+  "global_dir": "../fit_results/quick_global/global_fit_results_pppc_global_fig6_pppc_bb_m2000",
+  "no_save_maps": true,
+  "psf_labels": [
+    "nfw",
+    "gas",
+    "ics",
+    "loopA",
+    "loopB",
+    "pppc"
+  ]
+}

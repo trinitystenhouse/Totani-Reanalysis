@@ -1,0 +1,28 @@
+{
+  "base_config": "gce_global_base.json",
+  "name": "gce_global_15deg_fig4_w_disk",
+  "global_dir": "../global_fit_results_fig4_w_disk",
+
+  "roi_lon": 60,
+  "roi_lat": 60,
+  "include_disk": true,
+
+  "energy_bins": "all",
+
+  "verbosity": 1,
+
+  "plot_configs": [
+    "../../figures/configs/fig4_global_w_disk.json"
+  ],
+
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics",
+    "fb_neg",
+    "fb_pos"
+  ]
+}

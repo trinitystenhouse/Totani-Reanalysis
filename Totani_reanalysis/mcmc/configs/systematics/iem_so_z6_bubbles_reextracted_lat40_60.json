@@ -1,0 +1,38 @@
+{
+  "base_config": "../gce_global_base.json",
+  "name": "systematics_iem_so_z6_bubbles_reextracted_lat40_60",
+  "systematics_group": "lat_band",
+  "description": "Shoulder diagnostic. Parent iem_so_z6_bubbles_reextracted, restricted to |b| = 40-60 deg, the outer ROI where no GCE tail should reach. Not part of the foreground systematic band.",
+  "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_lat40_60",
+  "mcmc_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_lat40_60",
+  "plot_configs": [
+    "../../../figures/configs/systematics/iem_so_z6_bubbles_reextracted_lat40_60.json"
+  ],
+  "include_disk": false,
+  "energy_bins": "all",
+  "labels": [
+    "gas_iem_so_z6",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics_iem_so_z6",
+    "nfw_NFW_g1_rho2_rs21_R08_rvir402_ns2048_normpole_pheno",
+    "fb_pos_iem_so_z6",
+    "fb_neg_iem_so_z6"
+  ],
+  "negative_keys": [
+    "nfw",
+    "fb_neg"
+  ],
+  "no_save_maps": false,
+  "verbosity": 1,
+  "plot_style": "totani",
+  "counts": "../../../../fermi_data/totani/processed/counts_ccube_1000to1000000.fits",
+  "expo": "../../../../fermi_data/totani/processed/expcube_1000to1000000.fits",
+  "templates_dir": "../../../../fermi_data/totani/processed/templates",
+  "ext_mask": "../../../../fermi_data/totani/processed/templates/mask_extended_sources.fits",
+  "ps_catalog": "../../../../fermi_data/totani/templates/gll_psc_v35.fit",
+  "disk_cut": 40.0,
+  "roi_lat": 60.0
+}

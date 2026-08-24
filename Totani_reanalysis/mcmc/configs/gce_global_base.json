@@ -1,0 +1,54 @@
+{
+  "_comment": "Base config for global pixel-level GCE fit (Ackermann+2017 / Calore+2015 architecture). Use with run_global_from_config.py.",
+
+  "counts":        "../../../fermi_data/totani/processed/counts_ccube_1000to1000000.fits",
+  "expo":          "../../../fermi_data/totani/processed/expcube_1000to1000000.fits",
+  "templates_dir": "../../../fermi_data/totani/processed/templates",
+  "ext_mask":      "../../../fermi_data/totani/processed/templates/mask_extended_sources.fits",
+
+  "roi_lon": 60,
+  "roi_lat": 60,
+
+  "include_disk": true,
+  "disk_cut": 10.0,
+  "binsz": 0.125,
+
+  "energy_bins": "all",
+
+  "negative_keys": ["nfw", "fb_neg"],
+
+  "poisson_cexp_floor": 1e-30,
+  "error_method": "fisher",
+  "max_iter": 500000,
+
+  "no_save_maps": false,
+
+  "verbosity": 1,
+
+  "mask_bright_ps": true,
+  "ps_catalog": "../../../fermi_data/totani/templates/gll_psc_v35.fit",
+  "bright_ps_mask": "mask_sources_combined.fits",
+  "ps_flux_threshold": 3e-9,
+  "ps_radius_deg": 1.0,
+  "ps_scale_radius_with_flux": false,
+  "ps_max_radius_deg": 2.0,
+
+  "psf_labels": ["nfw", "gas", "ics", "loopA", "loopB"],
+  "psf_kind": "king",
+  "psf_gamma": 2.5,
+  "psf_rmax_factor": 6.0,
+
+  "check_global_positivity": true,
+  "positivity_fail_on_error": false,
+
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "nfw_NFW_g1_rho2.5_rs21_R08_rvir402_ns2048_normpole_pheno",
+    "loopA",
+    "loopB",
+    "ics",
+    "fb_flat"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "variants": [
+    {
+      "name": "baseline_rho2_lat10_20",
+      "group": "lat_band",
+      "parent": "baseline_rho2",
+      "disk_cut": 10.0,
+      "roi_lat": 20.0,
+      "config": "mcmc/configs/systematics/baseline_rho2_lat10_20.json",
+      "plot_config": "figures/configs/systematics/baseline_rho2_lat10_20.json",
+      "global_dir": "../../global_systematics/baseline_rho2_lat10_20"
+    },
+    {
+      "name": "baseline_rho2_lat20_40",
+      "group": "lat_band",
+      "parent": "baseline_rho2",
+      "disk_cut": 20.0,
+      "roi_lat": 40.0,
+      "config": "mcmc/configs/systematics/baseline_rho2_lat20_40.json",
+      "plot_config": "figures/configs/systematics/baseline_rho2_lat20_40.json",
+      "global_dir": "../../global_systematics/baseline_rho2_lat20_40"
+    },
+    {
+      "name": "baseline_rho2_lat40_60",
+      "group": "lat_band",
+      "parent": "baseline_rho2",
+      "disk_cut": 40.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/baseline_rho2_lat40_60.json",
+      "plot_config": "figures/configs/systematics/baseline_rho2_lat40_60.json",
+      "global_dir": "../../global_systematics/baseline_rho2_lat40_60"
+    },
+    {
+      "name": "baseline_rho2_cut15",
+      "group": "inner_cut",
+      "parent": "baseline_rho2",
+      "disk_cut": 15.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/baseline_rho2_cut15.json",
+      "plot_config": "figures/configs/systematics/baseline_rho2_cut15.json",
+      "global_dir": "../../global_systematics/baseline_rho2_cut15"
+    },
+    {
+      "name": "baseline_rho2_cut20",
+      "group": "inner_cut",
+      "parent": "baseline_rho2",
+      "disk_cut": 20.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/baseline_rho2_cut20.json",
+      "plot_config": "figures/configs/systematics/baseline_rho2_cut20.json",
+      "global_dir": "../../global_systematics/baseline_rho2_cut20"
+    },
+    {
+      "name": "iem_sl_z6_bubbles_reextracted_lat10_20",
+      "group": "lat_band",
+      "parent": "iem_sl_z6_bubbles_reextracted",
+      "disk_cut": 10.0,
+      "roi_lat": 20.0,
+      "config": "mcmc/configs/systematics/iem_sl_z6_bubbles_reextracted_lat10_20.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_bubbles_reextracted_lat10_20.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_bubbles_reextracted_lat10_20"
+    },
+    {
+      "name": "iem_sl_z6_bubbles_reextracted_lat20_40",
+      "group": "lat_band",
+      "parent": "iem_sl_z6_bubbles_reextracted",
+      "disk_cut": 20.0,
+      "roi_lat": 40.0,
+      "config": "mcmc/configs/systematics/iem_sl_z6_bubbles_reextracted_lat20_40.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_bubbles_reextracted_lat20_40.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_bubbles_reextracted_lat20_40"
+    },
+    {
+      "name": "iem_sl_z6_bubbles_reextracted_lat40_60",
+      "group": "lat_band",
+      "parent": "iem_sl_z6_bubbles_reextracted",
+      "disk_cut": 40.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/iem_sl_z6_bubbles_reextracted_lat40_60.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_bubbles_reextracted_lat40_60.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_bubbles_reextracted_lat40_60"
+    },
+    {
+      "name": "iem_sl_z6_bubbles_reextracted_cut15",
+      "group": "inner_cut",
+      "parent": "iem_sl_z6_bubbles_reextracted",
+      "disk_cut": 15.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/iem_sl_z6_bubbles_reextracted_cut15.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_bubbles_reextracted_cut15.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_bubbles_reextracted_cut15"
+    },
+    {
+      "name": "iem_sl_z6_bubbles_reextracted_cut20",
+      "group": "inner_cut",
+      "parent": "iem_sl_z6_bubbles_reextracted",
+      "disk_cut": 20.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/iem_sl_z6_bubbles_reextracted_cut20.json",
+      "plot_config": "figures/configs/systematics/iem_sl_z6_bubbles_reextracted_cut20.json",
+      "global_dir": "../../global_systematics/iem_sl_z6_bubbles_reextracted_cut20"
+    },
+    {
+      "name": "iem_so_z6_bubbles_reextracted_lat10_20",
+      "group": "lat_band",
+      "parent": "iem_so_z6_bubbles_reextracted",
+      "disk_cut": 10.0,
+      "roi_lat": 20.0,
+      "config": "mcmc/configs/systematics/iem_so_z6_bubbles_reextracted_lat10_20.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6_bubbles_reextracted_lat10_20.json",
+      "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_lat10_20"
+    },
+    {
+      "name": "iem_so_z6_bubbles_reextracted_lat20_40",
+      "group": "lat_band",
+      "parent": "iem_so_z6_bubbles_reextracted",
+      "disk_cut": 20.0,
+      "roi_lat": 40.0,
+      "config": "mcmc/configs/systematics/iem_so_z6_bubbles_reextracted_lat20_40.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6_bubbles_reextracted_lat20_40.json",
+      "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_lat20_40"
+    },
+    {
+      "name": "iem_so_z6_bubbles_reextracted_lat40_60",
+      "group": "lat_band",
+      "parent": "iem_so_z6_bubbles_reextracted",
+      "disk_cut": 40.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/iem_so_z6_bubbles_reextracted_lat40_60.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6_bubbles_reextracted_lat40_60.json",
+      "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_lat40_60"
+    },
+    {
+      "name": "iem_so_z6_bubbles_reextracted_cut15",
+      "group": "inner_cut",
+      "parent": "iem_so_z6_bubbles_reextracted",
+      "disk_cut": 15.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/iem_so_z6_bubbles_reextracted_cut15.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6_bubbles_reextracted_cut15.json",
+      "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_cut15"
+    },
+    {
+      "name": "iem_so_z6_bubbles_reextracted_cut20",
+      "group": "inner_cut",
+      "parent": "iem_so_z6_bubbles_reextracted",
+      "disk_cut": 20.0,
+      "roi_lat": 60.0,
+      "config": "mcmc/configs/systematics/iem_so_z6_bubbles_reextracted_cut20.json",
+      "plot_config": "figures/configs/systematics/iem_so_z6_bubbles_reextracted_cut20.json",
+      "global_dir": "../../global_systematics/iem_so_z6_bubbles_reextracted_cut20"
+    }
+  ]
+}

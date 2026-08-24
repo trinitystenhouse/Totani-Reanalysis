@@ -1,0 +1,22 @@
+{
+  "base_config": "base_pixelwise.json",
+  "name": "pixelwise_mcmc_fig2_3",
+  "mcmc_dir": "../pixelwise_mcmc_results_fig2_3",
+  "init_from_dir": "../global_fit_results_fig2_3",
+  "include_disk": true,
+  "plot_configs": [
+    "../../figures/configs/fig2_pixelwise_global.json",
+    "../../figures/configs/fig3_pixelwise_global.json"
+  ],
+
+  "labels": [
+    "gas_psf",
+    "iso",
+    "ps",
+    "nfw_NFW_g1_rho2.5_rs21_R08_rvir402_ns2048_normpole_pheno_psf",
+    "loopA_psf",
+    "loopB_psf",
+    "ics_psf",
+    "fb_flat"
+  ]
+}

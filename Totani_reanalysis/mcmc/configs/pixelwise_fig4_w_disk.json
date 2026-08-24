@@ -1,0 +1,21 @@
+{
+  "base_config": "base_pixelwise.json",
+  "name": "pixelwise_mcmc_fig4_w_disk",
+  "mcmc_dir": "../pixelwise_mcmc_results_fig4_w_disk",
+  "init_from_dir": "../global_fit_results_fig4_w_disk",
+  "include_disk": true,
+  "plot_configs": [
+    "../../figures/configs/fig4_pixelwise_global_w_disk.json"
+  ],
+
+  "labels": [
+    "gas_psf",
+    "iso",
+    "ps",
+    "loopA_psf",
+    "loopB_psf",
+    "ics_psf",
+    "fb_neg",
+    "fb_pos"
+  ]
+}

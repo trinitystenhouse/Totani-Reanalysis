@@ -1,0 +1,24 @@
+# Third-party dependencies actually imported by this repository.
+# No versions are pinned; nothing here relies on a specific release.
+
+numpy
+scipy
+matplotlib
+astropy
+cycler
+tqdm
+
+# MCMC (cellwise and global pixel-level fits: Totani_paper_check/mcmc,
+# Totani_reanalysis/mcmc)
+emcee
+corner
+
+# dSphs/basic_data_usage.ipynb only (demo notebook, not required by any
+# analysis script)
+pandas
+iminuit
+
+# Fetching and processing the raw Fermi-LAT data (docs/DATA_FETCH.md) needs
+# the Fermi Science Tools (fermitools, conda-forge) and fitsio separately;
+# neither is a Python import of any script in this repo, so neither is
+# listed above.

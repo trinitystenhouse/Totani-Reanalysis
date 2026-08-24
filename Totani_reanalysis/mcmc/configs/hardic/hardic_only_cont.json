@@ -1,0 +1,35 @@
+{
+  "_comment": "Comparator: halo REMOVED, hardic_cont IN. Deliberately kept OUT of write_global_systematics_configs.py's manifest.json (unlike mcmc/configs/systematics/hardic_cont.json, which retains the halo) -- the manifest-driven tabulators (figures/plot_global_systematics.py, systematics/propagate_systematics.py) require an 'nfw' column and raise without one. Read loglike_ml / theta directly from global_fit_k*.npz in global_dir instead. Patterned on ../gce_global_fig4.json (the existing no-halo baseline).",
+  "base_config": "../gce_global_base.json",
+  "name": "hardic_only_cont",
+  "global_dir": "../../hardic_only/cont",
+  "roi_lon": 60,
+  "roi_lat": 60,
+  "include_disk": false,
+  "energy_bins": "all",
+  "verbosity": 1,
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics",
+    "hardic_cont",
+    "fb_neg",
+    "fb_pos"
+  ],
+  "psf_labels": [
+    "nfw",
+    "gas",
+    "ics",
+    "loopA",
+    "loopB",
+    "hardic"
+  ],
+  "counts": "../../../../fermi_data/totani/processed/counts_ccube_1000to1000000.fits",
+  "expo": "../../../../fermi_data/totani/processed/expcube_1000to1000000.fits",
+  "templates_dir": "../../../../fermi_data/totani/processed/templates",
+  "ext_mask": "../../../../fermi_data/totani/processed/templates/mask_extended_sources.fits",
+  "ps_catalog": "../../../../fermi_data/totani/templates/gll_psc_v35.fit"
+}

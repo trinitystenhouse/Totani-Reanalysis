@@ -1,0 +1,29 @@
+{
+  "base_config": "gce_global_base.json",
+  "name": "gce_global_15deg_fig7",
+  "global_dir": "../global_fit_results_fig7_w_disk",
+
+  "roi_lon": 60,
+  "roi_lat": 60,
+  "include_disk": true,
+
+  "energy_bins": "all",
+
+  "verbosity": 1,
+
+  "plot_configs": [
+    "../../figures/configs/fig7_global_w_disk.json"
+  ],
+
+  "labels": [
+    "gas",
+    "iso",
+    "ps",
+    "loopA",
+    "loopB",
+    "ics",
+    "nfw_NFW_g1_rho1_rs21_R08_rvir402_ns2048_normpole_pheno",
+    "fb_pos",
+    "fb_neg"
+  ]
+}
