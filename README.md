@@ -1,9 +1,19 @@
-# Totani_Reanalysis_public
+# Totani-Reanalysis
 
 Analysis code for **"The 20 GeV Galactic Halo Excess: Pixel-Level
 Confirmation and Consistency with Sub-TeV WIMP Annihilation"**
 (T. R. Stenhouse, C. Ghag, F. F. Deppisch),
 [arXiv:2607.08552](https://arxiv.org/abs/2607.08552).
+
+| | |
+|---|---|
+| Paper | [arXiv:2607.08552](https://arxiv.org/abs/2607.08552) (v1) |
+| Archive | [doi:10.5281/zenodo.21280724](https://doi.org/10.5281/zenodo.21280724) |
+| This snapshot | tag `Public-Release-R1`, matching arXiv v1 |
+| Licence | MIT |
+
+The code on `main` is the version that produced arXiv v1. A new tagged
+release, archived on Zenodo, will accompany any later version of the paper.
 
 It reanalyses the result reported in **T. Totani**, "20 GeV halo-like excess
 of the Galactic diffuse emission and implications for dark matter
@@ -20,7 +30,7 @@ annihilation signal. This repository:
    claim, using the same *Fermi*-LAT Pass 8 event selection and template set.
 2. **Extends the analysis to pixel level** (`Totani_reanalysis/`) — a
    per-pixel Poisson likelihood fit over the same 13-energy-bin, 960×960
-   pixel grid, combined across energy bins into a single joint significance,
+   pixel grid, with the per-bin likelihoods combined across energy bins,
    together with systematics (Fermi-bubble re-extraction, diffuse-model
    variants, disk-inclusion checks), a velocity-dependence / dwarf-spheroidal
    tension study, and a decaying-dark-matter alternative fit.
@@ -40,10 +50,11 @@ significance in sigma — the paper is explicit that the regularity conditions
 for a chi-squared-distributed likelihood ratio are not met here, so no such
 conversion is offered. The annihilation cross section required to produce
 the excess sits a factor of a few above the dwarf-spheroidal stacked limit
-(R = 5.1, spanning 1.6-9.8 across the full systematic budget). This
-repository computes those numbers; it does not resolve that tension. A
-two-component dark-sector / spectral-reshaping interpretation is explored in
-the paper as a mechanism that *lessens* — not resolves — the discrepancy.
+(R_bb = 5.1, spanning 1.6-9.8, and R_WW = 4.1, spanning 1.2-7.7, across the
+full systematic budget, where R is the ratio of the halo cross section to the
+dwarf upper limit). This repository computes those numbers. It does not
+resolve that tension. The paper frames the result as consistency with dark
+matter annihilation, not as a detection.
 
 ## Install
 
@@ -120,6 +131,11 @@ commands and the expected runtimes.
 > T. R. Stenhouse, C. Ghag and F. F. Deppisch, "The 20 GeV Galactic Halo
 > Excess: Pixel-Level Confirmation and Consistency with Sub-TeV WIMP
 > Annihilation," [arXiv:2607.08552](https://arxiv.org/abs/2607.08552) (2026).
+
+To cite the code itself, use the Zenodo archive,
+[doi:10.5281/zenodo.21280724](https://doi.org/10.5281/zenodo.21280724).
+`CITATION.cff` carries both, and GitHub's "Cite this repository" button
+reads it.
 
 If you use the cellwise replication independently, please also cite the
 original result:

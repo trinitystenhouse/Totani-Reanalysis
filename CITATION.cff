@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below and the Zenodo archive of the code."
+title: "Totani-Reanalysis: pixel-level reanalysis of the 20 GeV Galactic halo excess"
+type: software
+authors:
+  - family-names: Stenhouse
+    given-names: Trinity R.
+    orcid: "https://orcid.org/0009-0007-5174-739X"
+    affiliation: "Department of Physics and Astronomy, University College London"
+  - family-names: Ghag
+    given-names: Chamkaur
+    affiliation: "Department of Physics and Astronomy, University College London"
+  - family-names: Deppisch
+    given-names: Frank F.
+    affiliation: "Department of Physics and Astronomy, University College London"
+doi: "10.5281/zenodo.21280724"
+repository-code: "https://github.com/trinitystenhouse/Totani-Reanalysis"
+license: MIT
+keywords:
+  - dark matter
+  - Fermi-LAT
+  - gamma-ray astronomy
+  - Galactic halo
+  - indirect detection
+preferred-citation:
+  type: article
+  title: "The 20 GeV Galactic Halo Excess: Pixel-Level Confirmation and Consistency with Sub-TeV WIMP Annihilation"
+  authors:
+    - family-names: Stenhouse
+      given-names: Trinity R.
+      orcid: "https://orcid.org/0009-0007-5174-739X"
+    - family-names: Ghag
+      given-names: Chamkaur
+    - family-names: Deppisch
+      given-names: Frank F.
+  year: 2026
+  identifiers:
+    - type: other
+      value: "arXiv:2607.08552"
+  url: "https://arxiv.org/abs/2607.08552"
