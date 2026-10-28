@@ -1,60 +1,77 @@
 # Totani-Reanalysis
 
-Analysis code for **"The 20 GeV Galactic Halo Excess: Pixel-Level
-Confirmation and Consistency with Sub-TeV WIMP Annihilation"**
-(T. R. Stenhouse, C. Ghag, F. F. Deppisch),
-[arXiv:2607.08552](https://arxiv.org/abs/2607.08552).
+Code that reproduces the results of **"The 20 GeV Galactic Halo Excess:
+Pixel-Level Confirmation and Consistency with Sub-TeV WIMP Annihilation"**
+(T. R. Stenhouse, C. Ghag, F. F. Deppisch,
+[arXiv:2607.08552](https://arxiv.org/abs/2607.08552)), together with a set of
+further robustness tests of the excess.
 
 | | |
 |---|---|
-| Paper | [arXiv:2607.08552](https://arxiv.org/abs/2607.08552) (v1) |
-| Archive | [doi:10.5281/zenodo.21280724](https://doi.org/10.5281/zenodo.21280724) |
-| This snapshot | tag `Public-Release-R1`, matching arXiv v1 |
+| Paper | [arXiv:2607.08552](https://arxiv.org/abs/2607.08552) |
+| Code archive | [doi:10.5281/zenodo.21280724](https://doi.org/10.5281/zenodo.21280724) |
+| Reproducing a figure or number | [REPRODUCE.md](REPRODUCE.md) |
+| Data | *Fermi*-LAT Pass 8, fetched as described in [docs/DATA_FETCH.md](docs/DATA_FETCH.md) |
 | Licence | MIT |
 
-The code on `main` is the version that produced arXiv v1. A new tagged
-release, archived on Zenodo, will accompany any later version of the paper.
+## Background
 
-It reanalyses the result reported in **T. Totani**, "20 GeV halo-like excess
-of the Galactic diffuse emission and implications for dark matter
-annihilation", [arXiv:2507.07209](https://arxiv.org/abs/2507.07209).
+T. Totani reported a halo-like excess peaking near 20 GeV in fifteen years of
+*Fermi*-LAT diffuse emission, with a morphology resembling dark matter
+annihilation in the Galactic halo
+([arXiv:2507.07209](https://arxiv.org/abs/2507.07209)). This repository tests
+that claim independently. It first replicates Totani's own cell-based fit, then
+repeats the measurement with a pixel-level Poisson likelihood, interprets the
+result as dark matter and confronts it with dwarf-spheroidal limits, and finally
+asks, test by test, whether a conventional explanation or an analysis choice
+could produce the same feature.
 
-## What this repository does
+## What is in this repository
 
-Totani reported a ~20 GeV excess in *Fermi*-LAT data toward the
-Galactic centre with a spatial profile resembling an NFW-squared dark-matter
-annihilation signal. This repository:
+### Reproducing the paper
 
-1. **Replicates Totani's published cellwise (per-sky-cell) fit**
-   (`Totani_paper_check/`) as an independent cross-check of the original
-   claim, using the same *Fermi*-LAT Pass 8 event selection and template set.
-2. **Extends the analysis to pixel level** (`Totani_reanalysis/`) — a
-   per-pixel Poisson likelihood fit over the same 13-energy-bin, 960×960
-   pixel grid, with the per-bin likelihoods combined across energy bins,
-   together with systematics (Fermi-bubble re-extraction, diffuse-model
-   variants, disk-inclusion checks), a velocity-dependence / dwarf-spheroidal
-   tension study, and a decaying-dark-matter alternative fit.
-3. **Compares against dwarf-spheroidal annihilation limits**
-   (`dSphs/`, `Totani_reanalysis/core/dsph_limits*.py`) using both the
-   standard Hoof et al. (2020, [arXiv:1812.06986](https://arxiv.org/abs/1812.06986))
-   stacked s-wave limits and the McDaniel et al. (2024,
-   [arXiv:2311.04982](https://arxiv.org/abs/2311.04982)) per-dwarf SED
-   likelihoods.
+| Step | What it does | Where |
+|---|---|---|
+| Replication | Totani's cell-based fit, with the same event selection and template set | `Totani_paper_check/` |
+| Pixel-level fit | Poisson likelihood over 750,384 pixels at 0.125 deg, 13 energy bins from 1.16 GeV to 1 TeV, with PSF forward-folding and a bright-source mask | `Totani_reanalysis/mcmc/` |
+| Dark matter fit | Annihilation mass and cross section for b-bbar, W+W- and tau+tau- on one fixed mass grid, and a decaying dark matter alternative | `Totani_reanalysis/run_pppc_mass_scan.py`, `Totani_reanalysis/decay/` |
+| Dwarf comparison | The halo cross section against the Hoof et al. stacked limits ([arXiv:1812.06986](https://arxiv.org/abs/1812.06986)) and the McDaniel et al. per-dwarf likelihoods ([arXiv:2311.04982](https://arxiv.org/abs/2311.04982)) | `Totani_reanalysis/core/dsph_limits*.py`, `dSphs/` |
+| Velocity dependence | How p-wave, d-wave and enhanced annihilation change the halo-to-dwarf ratio | `Totani_reanalysis/velocity_dep/` |
+| Figures | Every paper figure from one script | `Totani_reanalysis/make_paper_results_figures.py` |
 
-**What the code establishes:** the pixel-level fit independently confirms an
-NFW²-like halo excess, with a log-likelihood improvement over the no-halo
-baseline of $2\sum_k\Delta\ln\mathcal{L}_k \simeq 1.7\times10^{3}$ across the
-13 retained energy bins ($\simeq930$ in the 10-40 GeV signal band alone).
-This is a template-level fit-improvement diagnostic, not a calibrated
-significance in sigma — the paper is explicit that the regularity conditions
-for a chi-squared-distributed likelihood ratio are not met here, so no such
-conversion is offered. The annihilation cross section required to produce
-the excess sits a factor of a few above the dwarf-spheroidal stacked limit
-(R_bb = 5.1, spanning 1.6-9.8, and R_WW = 4.1, spanning 1.2-7.7, across the
-full systematic budget, where R is the ratio of the halo cross section to the
-dwarf upper limit). This repository computes those numbers. It does not
-resolve that tension. The paper frames the result as consistency with dark
-matter annihilation, not as a detection.
+### Robustness tests
+
+Each test asks one question of the excess.
+
+| Test | Question | Where |
+|---|---|---|
+| Diffuse-model variants | Does the halo depend on the choice of foreground model (no Loop I, flat bubbles, GIEM only, steep or flat inverse-Compton morphology)? | `mcmc/write_global_systematics_configs.py`, `systematics/propagate_systematics.py` |
+| Fourteen-model GALPROP grid | Does it survive across the Ackermann et al. (2012) interstellar-emission grid, with the Fermi bubbles re-extracted against each model? | `systematics/rebuild_bubbles_per_variant.py`, `systematics/total_systematic_band.py` |
+| Injected electron population | Can a burst of cosmic-ray electrons at the Galactic centre, radiating by inverse Compton, mimic the halo in spectrum and morphology? | `systematics/run_hardic_bubble_reextraction.py`, `systematics/hardic_report.py`, `morphology/angular_profile_hardic.py` |
+| Mismodelled-foreground null | If the true sky has a different inverse-Compton morphology and no halo, does the fit invent one? | `mcmc/build_diffuse_mismodel_mock.py`, `check_null_and_hemisphere.py` |
+| Sky splits | Is the halo spectrum consistent between hemispheres and quadrants? | `check_null_and_hemisphere.py`, `compare_quadrants.py` |
+| Disk inclusion | Does adding the Galactic plane change the result? | `compare_pixelwise_disk_in_out.py`, `compare_dlnl_disk_in_out.py` |
+| Template covariance | How strongly is the halo correlated with each other component in the posterior? | `systematics/posterior_covariance.py` |
+| Low-energy shoulder | Where on the sky does the 1.5-4.4 GeV emission sit, and does excluding it move the dark matter mass? | `systematics/shoulder_by_region.py`, `systematics/refit_mass_energy_range.py` |
+| Morphology by energy | Does the angular profile of the excess change across the signal band? | `morphology/angular_profile_by_energy.py` |
+| Positivity | Is the best-fit model positive in every occupied pixel? | `systematics/positivity_occupied_check.py`, `mcmc/check_global_positivity.py` |
+
+Paths in this table are relative to `Totani_reanalysis/`.
+
+## Main results
+
+The pixel-level fit confirms an NFW²-like halo excess independently. Adding the
+halo improves the fit by $2\sum_k\Delta\ln\mathcal{L}_k \simeq 1.7\times10^{3}$
+across the 13 energy bins, about 930 of it in the 10-40 GeV signal band. This is
+a template-level diagnostic of fit improvement, not a significance in sigma,
+because the conditions for a chi-squared-distributed likelihood ratio are not
+met here.
+
+Read as dark matter annihilation, the excess needs a cross section a few times
+above the stacked dwarf limit. The ratio of the two is R_bb = 5.1 (1.6 to 9.8)
+and R_WW = 4.1 (1.2 to 7.7) across the full systematic budget. The repository
+computes these numbers and does not resolve the tension. The result is framed
+as consistency with dark matter annihilation, not as a detection.
 
 ## Install
 
